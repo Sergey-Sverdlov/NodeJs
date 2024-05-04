@@ -1,7 +1,9 @@
 const fs = require('fs')
 
 const path = require('path')
+const dotenv = require('dotenv')
 
+dotenv.config()
 console.log("START")
 // fs.mkdirSync(path.resolve(__dirname, 'dir', 'dir2', 'dir3'), {recursive: true}) // Создание папки
 // fs.mkdir(path.resolve(__dirname, 'dir'), (err) => {
@@ -62,7 +64,7 @@ const readFileAsync = async (path) => {
 
 const removeFileAsync = async (path) => {
     return new Promise((res, reject) => {
-        fs.rm(path, {encoding: 'utf-8'}, (err) => {
+        fs.rm(path, (err) => {
             if (err) {
                 return reject(err.message)
             }
@@ -84,3 +86,13 @@ const removeFileAsync = async (path) => {
 // removeFileAsync(path.resolve(__dirname, 'test.txt'))
 //     .then(() => console.log("Файл удален"))
 
+const text = process.env.TEXT || '234 324 gfgfdg'
+const myPath = path.resolve(__dirname, 'text.txt')
+const newFilePath = path.resolve(__dirname, 'count.txt')
+writeFileAsync(myPath, text)
+    .then(() => readFileAsync(myPath))
+    .then(data => data.split(' ').length)
+    .then(count => writeFileAsync(newFilePath, "Количество слов "+count))
+    .then(() => removeFileAsync(myPath))
+    .then(() => console.log("Задание выполнено успешно"))
+    .catch(err => console.log(err))
