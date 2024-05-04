@@ -4,7 +4,7 @@
   "description": "full course nodejs",
   "main": "index.js",
   "scripts": {
-    "start": "node ./lessons/os.js"
+    "start": "node ./lessons/events.js"
   },
   "author": "",
   "license": "ISC",
