@@ -6,8 +6,15 @@ const users = [
     {id: 2, name: "Alex"}
 ]
 router.get('/users', (req, res) => {
-    res.end(JSON.stringify(users))
+    console.log(req.params)
+    res.send(users)
 })
 
+router.post('/users', (req, res) => {
+    console.log(req.body)
+    const user = req.body
+    users.push(user)
+    res.send(users)
+})
 
 module.exports = router

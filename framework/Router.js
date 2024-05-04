@@ -18,4 +18,8 @@ module.exports = class Router {
     get(path, handler) {
         this.request('GET', path, handler)
     }
+
+    post(path, handler) {
+        this.request('POST', path, handler)
+    }
 }
